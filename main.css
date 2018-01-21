@@ -72,6 +72,14 @@ body {
   max-width: 600px;
   margin: 0 auto;
 }
+.editable {
+  border-bottom: 0.5px solid rgb(235, 48, 124);
+  color: rgb(235, 48, 124);
+}
+.edited {
+  border: 0.5px solid rgb(235, 48, 124);
+  color: rgb(235, 48, 124);
+}
 .highlight {
   background-color: rgb(235, 48, 124);
   color: white;
