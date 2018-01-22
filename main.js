@@ -1,17 +1,14 @@
 var lyric = document.querySelector("#lyric");
-var text = lyric.innerText;
+var text = lyric.textContent;
 
 var wordcut = require("wordcut");
 wordcut.init();
 var words = wordcut.cut(text).split("|");
 
-//TODO remove spans with only white spaces (but keep the white spaces like new lines)
-
 text = "<span>" + words.join("</span><span>") + "</span>";
-console.log(text);
-text = text.replace(new RegExp("<span> </span>", "ig"), "&nbsp;");
+text = text.replace(new RegExp("<span> </span>", "ig"), " ");
 text = text.replace(new RegExp("<span>[\r\n\f]</span>", "ig"), "<br>");
-console.log(text);
+text = text.replace(new RegExp("<span>[\r\n\f]+</span>", "ig"), "<br><br>");
 lyric.innerHTML = text;
 
 // lyric.addEventListener("mouseover", function(event) {
@@ -32,6 +29,7 @@ lyric.addEventListener("click", function(event) {
 }, false);
 
 document.addEventListener("keyup", function(event) {
+  //TODO check special keys
   if (lyric.querySelectorAll(".highlight")) {
     var regex = new RegExp(targetText, "ig");
     if (justClicked) { //text replacement
